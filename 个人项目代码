@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,i,j,k,s,x,c;
+    scanf("%d",&n);
+    s=(n+1)/2;
+    x=(n-1)/2;
+    c=x;
+    for(i=1; i<=s; i++)
+    {
+        for(j=1; j<=s-i; j++)
+            printf(" ");
+        for(k=1; k<=2*i-1; k++)
+            printf("*");
+        printf("\n");
+    }
+    for(i=1; i<=x; i++)
+    {
+        for(j=1; j<=i; j++)
+            printf(" ");
+        for(k=1; k<=2*c-1; k++)
+            printf("*");
+        c--;
+        printf("\n");
+    }
+    system("pause");
+    return 0;
+}
