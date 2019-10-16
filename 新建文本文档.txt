@@ -1,0 +1,57 @@
+package Homework1;
+
+import java.util.Scanner;
+
+public class Test1 {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String line = in.nextLine();
+		String name = line.split(",")[0];
+		int age = Integer.parseInt(line.split(",")[1]);
+		String id = line.split(",")[2];
+		int a1 = Integer.parseInt(line.split(",")[3]);
+		int a2 = Integer.parseInt(line.split(",")[4]);
+		int a3 = Integer.parseInt(line.split(",")[5]);
+		int a4 = Integer.parseInt(line.split(",")[6]);
+		Student student = new Student(name, age, id, a1, a2, a3, a4);
+		System.out.println(student.getName() + "," + student.getAge() + ","
+				+ student.getID() + "," + student.getAverage());
+		in.close();
+	}
+
+}
+
+class Student {
+	private String name;
+	private int age;
+	private String id;
+	private int average1, average2, average3, average4;
+
+	public Student(String name, int age, String id, int average1, int average2,
+			int average3, int average4) {
+		this.name = name;
+		this.age = age;
+		this.id = id;
+		this.average1 = average1;
+		this.average2 = average2;
+		this.average3 = average3;
+		this.average4 = average4;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public String getID() {
+		return id;
+	}
+
+	public int getAverage() {
+		return (average1 + average2 + average3 + average4) / 4;
+	}
+}
