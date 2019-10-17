@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <iostream>
+int main()
+{    int n,i,j,k,l,m,c,s=0;
+    scanf("%d",&n);
+    c=n-1;
+    for(i=1;i<=n;i++){
+        for(j=c;j>0;j--)
+            printf(" ");
+        for(k=1;k<=2*i-1;k++) 
+            printf("*");
+        for(l=1;l<=2*c;l++) 
+            printf(" "); 
+        c--;
+        for(m=1;m<=2*i-1;m++) 
+            printf("*");
+        printf("\n");
+    }
+    for(i=2*n-1;i>=1;i--){
+        for(j=0;j<s;j++) 
+            printf(" ");
+        for(k=1;k<=2*i;k++) 
+            printf("*");
+        printf("\n");
+        s++;
+    }
+    system("pause");
+    return 0;
+}
