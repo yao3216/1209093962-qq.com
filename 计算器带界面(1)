@@ -1,0 +1,239 @@
+import tkinter
+from tkinter import *
+import 计算
+
+class Compute():
+    def __init__(self):
+        self.win = tkinter.Tk()
+        # 创建一个变量
+        self.show = tkinter.StringVar()
+        # 输入列表
+        self.list = []
+        self.centerUi()
+        self.buttonCompute()
+        self.win.mainloop()
+
+    def centerUi(self):
+        self.win.geometry("400x400+700+100")
+        self.win.title("计算器")
+        self.win.wm_resizable(width=False, height=False)
+
+
+    def buttonCompute(self):
+        self.in_entry = tkinter.Entry(self.win,font=("宋体", 30), textvariable=self.show)
+        self.in_entry.place(x=15, y=15, width=325, height=80)
+
+        clear_button = tkinter.Button(self.win, text='Clear', command=lambda: (self.showClear()))
+        clear_button.place(x=15, y=110, width=70, height=50)
+        back_button = tkinter.Button(self.win, text='Back', command=lambda: (self.showBack()))
+        back_button.place(x=100, y=110, width=70, height=50)
+        button1 = tkinter.Button(self.win,text='.', command=lambda: (self.symbol_1()))
+        button1.place(x=185, y=110, width=70, height=50)
+        button2 = tkinter.Button(self.win,text='/', command=lambda: (self.symbol_2()))
+        button2.place(x=270, y=110, width=70, height=50)
+
+        button3 = tkinter.Button(self.win, text='7', command=lambda: (self.seven()))
+        button3.place(x=15, y=170, width=70, height=50)
+        button4 = tkinter.Button(self.win, text='8', command=lambda: (self.eight()))
+        button4.place(x=100, y=170, width=70, height=50)
+        button5 = tkinter.Button(self.win, text='9', command=lambda: (self.nine()))
+        button5.place(x=185, y=170, width=70, height=50)
+        button6 = tkinter.Button(self.win, text='*', command=lambda: (self.symbol_3()))
+        button6.place(x=270, y=170, width=70, height=50)
+
+        button7 = tkinter.Button(self.win, text='4', command=lambda: (self.four()))
+        button7.place(x=15, y=230, width=70, height=50)
+        button8 = tkinter.Button(self.win, text='5', command=lambda: (self.five()))
+        button8.place(x=100, y=230, width=70, height=50)
+        button9 = tkinter.Button(self.win, text='6', command=lambda: (self.six()))
+        button9.place(x=185, y=230, width=70, height=50)
+        button10 = tkinter.Button(self.win, text='-', command=lambda: (self.symbol_4()))
+        button10.place(x=270, y=230, width=70, height=50)
+
+        button11 = tkinter.Button(self.win, text='1', command=lambda: (self.one()))
+        button11.place(x=15, y=290, width=70, height=50)
+        button12 = tkinter.Button(self.win, text='2', command=lambda: (self.two()))
+        button12.place(x=100, y=290, width=70, height=50)
+        button13 = tkinter.Button(self.win, text='3', command=lambda: (self.three()))
+        button13.place(x=185, y=290, width=70, height=50)
+        button14 = tkinter.Button(self.win, text='+', command=lambda: (self.symbol_5()))
+        button14.place(x=270, y=290, width=70, height=50)
+
+        button15 = tkinter.Button(self.win, text='0', command=lambda: (self.zero()))
+        button15.place(x=100, y=350, width=70, height=50)
+        button16 = tkinter.Button(self.win, text=')', command=lambda: (self.symbol_6()))
+        button16.place(x=185, y=350, width=70, height=50)
+        button17 = tkinter.Button(self.win, text='=', command=lambda: (self.runComputor()))
+        button17.place(x=270, y=350, width=70, height=50)
+        button18 = tkinter.Button(self.win, text='(', command=lambda: (self.symbol_7()))
+        button18.place(x=15, y=350, width=70, height=50)
+
+
+    def insertData(self, str):
+        self.in_entry.insert(INSERT, str)
+
+    def showClear(self):
+        # self.in_entry.delete(0, len(self.list))
+        self.in_entry.delete(0, END)
+        self.list = []
+        print(self.list)
+
+    def showBack(self):
+        if len(self.list) == 0:
+            pass
+        else:
+            self.in_entry.delete(len(self.list)-1, len((self.list)))
+            del self.list[-1]
+            print(self.list)
+
+    def one(self):
+        self.list.insert(len(self.list), 1)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "1")
+        self.insertData(1)
+
+    def two(self):
+        self.list.insert(len(self.list), 2)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "2")
+        self.insertData(2)
+
+    def three(self):
+        self.list.insert(len(self.list), 3)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "3")
+        self.insertData(3)
+
+    def four(self):
+        self.list.insert(len(self.list), 4)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "4")
+        self.insertData(4)
+
+    def five(self):
+        self.list.insert(len(self.list), 5)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "5")
+        self.insertData(5)
+
+    def six(self):
+        self.list.insert(len(self.list), 6)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "6")
+        self.insertData(6)
+
+    def seven(self):
+        self.list.insert(len(self.list), 7)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "7")
+        self.insertData(7)
+
+    def eight(self):
+        self.list.insert(len(self.list), 8)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "8")
+        self.insertData(8)
+
+    def nine(self):
+        self.list.insert(len(self.list), 9)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "9")
+        self.insertData(9)
+
+    def zero(self):
+        self.list.insert(len(self.list), 0)
+        print(self.list)
+        # self.in_entry.insert(INSERT, "0")
+        self.insertData(0)
+
+    def symbol_1(self):
+        self.list.insert(len(self.list), ".")
+        self.insertData(".")
+
+    def symbol_2(self):
+        L = len(self.list)
+        if self.islegal():
+            self.list.insert(len(self.list), "/")
+            print(self.list)
+            # self.in_entry.insert(INSERT, "/")
+            self.insertData("/")
+
+    def symbol_3(self):
+        L = len(self.list)
+        if self.islegal():
+            self.list.insert(len(self.list), "*")
+            print(self.list)
+            # self.in_entry.insert(INSERT, "*")
+            self.insertData("*")
+
+    def symbol_4(self):
+        L = len(self.list)
+        if self.islegal():
+            self.list.insert(len(self.list), "-")
+            print(self.list)
+            # self.in_entry.insert(INSERT, "-")
+            self.insertData("-")
+
+    def symbol_5(self):
+        L = len(self.list)
+        if self.islegal():
+            self.list.insert(len(self.list), "+")
+            print(self.list)
+            # self.in_entry.insert(INSERT, "+")
+            self.insertData("+")
+
+    def symbol_6(self):
+        if self.islegal():
+            self.list.insert(len(self.list), ")")
+            print(self.list)
+            # self.in_entry.insert(INSERT, ")")
+            self.insertData(")")
+    def symbol_7(self):
+            self.list.insert(len(self.list), "(")
+            print(self.list)
+            # self.in_entry.insert(INSERT, "(")
+            self.insertData("(")
+
+    def isdigit(self, c):
+        if c == '0' or c == '1' or c == '2' or c == '3' or c == '4'or c == '5'or c == '6'or c == '7'or c == '8'or c == '9':
+            return True
+        return False
+
+    def isSymbol(self, c):
+        if c == '+':
+            return True
+        elif c == '-':
+            return True
+        elif c == '*':
+            return True
+        elif c == '/':
+            return True
+        elif c == '%':
+            return True
+        elif c == '.':
+            return True
+        return False
+
+    def islegal(self):
+        L = len(self.list)
+        if L == 0:
+            return False
+        elif self.isdigit(self.list[L-1]):
+            return False
+        elif self.isSymbol(self.list[L-1]):
+            return False
+        else:
+            return True
+
+    def runComputor(self):
+        result = ""
+        for item in self.list:
+            result = result + str(item)
+        ans = 计算.Main(result)
+        self.showClear()
+        self.list.append(ans)
+        self.in_entry.insert(INSERT, ans)
+
+
+if __name__ == '__main__':
+    Compute()
