@@ -1,0 +1,82 @@
+import re
+
+def eq_format(eq):
+    '''
+    :param eq: 输入的算式字符串
+    :return: 格式化以后的列表，如['60','+','7','*','8']
+    '''
+    format_list = re.findall('[\d\.]+|\(|\+|\-|\*|\/|\)', eq)
+    return format_list
+
+def change(eq, count):
+    '''
+    :param eq: 刚去完括号或者乘除后的格式化列表
+    :param count: 发生变化的元素的索引
+    :return: 返回一个不存在 '+-' ,'--'类的格式化列表
+    '''
+    if eq[count] == '-':
+        if eq[count - 1] == '-':
+            eq[count - 1] = '+'
+            del eq[count]
+        elif eq[count - 1] == '+':
+            eq[count - 1] = '-'
+            del eq[count]
+    return eq
+
+
+def remove_multiplication_division(eq):
+    '''
+    :param eq: 带有乘除号的格式化列表
+    :return: 去除了乘除号的格式化列表
+    '''
+    count = 0
+    for i in eq:
+        if i == '*':
+            if eq[count + 1] != '-':
+                eq[count - 1] = float(eq[count - 1]) * float(eq[count + 1])
+                del (eq[count])
+                del (eq[count])
+            elif eq[count + 1] == '-':
+                eq[count] = float(eq[count - 1]) * float(eq[count + 2])
+                eq[count - 1] = '-'
+                del (eq[count + 1])
+                del (eq[count + 1])
+            eq = change(eq, count - 1)
+            return remove_multiplication_division(eq)
+        elif i == '/':
+            if eq[count + 1] != '-':
+                eq[count - 1] = float(eq[count - 1]) / float(eq[count + 1])
+                del (eq[count])
+                del (eq[count])
+            elif eq[count + 1] == '-':
+                eq[count] = float(eq[count - 1]) / float(eq[count + 2])
+                eq[count - 1] = '-'
+                del (eq[count + 1])
+                del (eq[count + 1])
+            eq = change(eq, count - 1)
+            return remove_multiplication_division(eq)
+        count = count + 1
+    return eq
+
+
+def remove_plus_minus(eq):
+    '''
+    :param eq: 只带有加减号的格式化列表
+    :return: 计算出整个列表的结果
+    '''
+    count = 0
+    if eq[0] != '-':
+        sum = float(eq[0])
+    else:
+        sum = 0.0
+    for i in eq:
+        if i == '-':
+            sum = sum - float(eq[count + 1])
+        elif i == '+':
+            sum = sum + float(eq[count + 1])
+        count = count + 1
+    if sum >= 0:
+        eq = [str(sum)]
+    else:
+        eq = ['-', str(-sum)]
+    return eq
